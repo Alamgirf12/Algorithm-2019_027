@@ -15,8 +15,6 @@ import java.util.*;
 
 
 
-import java.util.*;
-
 public class BFS {
     public static void bfs(String[][] graph, String startNode) {
         Queue<String> queue = new LinkedList<>();
