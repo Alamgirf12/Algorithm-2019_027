@@ -15,72 +15,42 @@ import java.util.*;
 
 
 
-class BFS {
+public class BFS {
+    public static void bfs(Map<String, List<String>> graph, String startNode) {
+        Queue<String> queue = new LinkedList<>();
+        List<String> visited = new ArrayList<>();
 
-    Scanner s = new Scanner(System.in);
+        queue.offer(startNode);
 
-    public void bfsSort() {
-        System.out.print("\nEnter the node count-->");
-        int a = s.nextInt();
-        System.out.print("\nEnter number of edges-->");
-        int c = s.nextInt();
-        Graph g = new Graph(a);
-        for (int i = 0; i < c; i++) {
-            System.out.print("\n Enter edges-->");
-            g.addEd(s.nextInt(), s.nextInt());
-        }
-        System.out.print("\n starting node for travarsal-->");
-        int b = s.nextInt();
-        System.out.print("\nBreadth First Traversal-->");
-        g.BFS(b);
+        while (!queue.isEmpty()) {
+            String currentNode = queue.poll();
 
-    }
+            if (!visited.contains(currentNode)) {
+                visited.add(currentNode);
+                System.out.println(currentNode);
 
-}
-
-class Graph {
-
-    private int V;
-    private LinkedList<Integer> adj[];
-
-    Graph(int v) {
-        V = v;
-        adj = new LinkedList[v];
-        for (int i = 0; i < v; ++i) {
-            adj[i] = new LinkedList();
-        }
-    }
-
-
-    void addEd(int v, int w) {
-        adj[v].add(w);
-    }
-
-
-    void BFS(int s) {
-
-        boolean visited[] = new boolean[V];
-        LinkedList<Integer> queue
-                = new LinkedList<Integer>();
-
-
-        visited[s] = true;
-        queue.add(s);
-
-        while (queue.size() != 0) {
-
- 
-            s = queue.poll();
-            System.out.print(s + " ");
-
-            Iterator<Integer> i = adj[s].listIterator();
-            while (i.hasNext()) {
-                int n = i.next();
-                if (!visited[n]) {
-                    visited[n] = true;
-                    queue.add(n);
+                List<String> neighbors = graph.get(currentNode);
+                for (String neighbor : neighbors) {
+                    if (!visited.contains(neighbor) && !queue.contains(neighbor)) {
+                        queue.offer(neighbor);
+                    }
                 }
             }
         }
+    }
+
+     public static void  bfsSort() {
+        Map<String, List<String>> graph = new HashMap<>();
+        graph.put("A", Arrays.asList("B", "C"));
+        graph.put("B", Arrays.asList("A", "D", "E"));
+        graph.put("C", Arrays.asList("A", "F"));
+        graph.put("D", Collections.singletonList("B"));
+        graph.put("E", Arrays.asList("B", "F"));
+        graph.put("F", Arrays.asList("C", "E"));
+
+        String startNode = "A";
+
+        System.out.println("BFS Traversal:");
+        bfs(graph, startNode);
     }
 }
