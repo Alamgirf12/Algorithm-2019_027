@@ -119,7 +119,7 @@ public class Algorithm_2019_027 {
     System.out.println(" 01.Largest common subsequence \n 02.BFS \n 03.Bellman ford's algorithm \n "
                     + "04.Dijkastra's algorithm \n 05.Krushkal's algorithm  \n 06.DFS \n "
                     + "07.Optimal Binary Search Tree \n 08. Knapsack problem\n 09.Prim's algorithm  \n "
-                    + "10.Warshall's algorithm //incompleted \n 11.Topological sort \n 12.Longest increasing subsequence \n "
+                    + "10.Warshall's algorithm \n 11.Topological sort \n 12.Longest increasing subsequence \n "
                     + "13.Naive string matching algorithm\n 14.DAG \n 15.Matrix chain multiplication \n "
                    );
             System.out.print("Enter your choice:> ");
