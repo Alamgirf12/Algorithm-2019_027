@@ -15,8 +15,10 @@ import java.util.*;
 
 
 
+import java.util.*;
+
 public class BFS {
-    public static void bfs(Map<String, List<String>> graph, String startNode) {
+    public static void bfs(String[][] graph, String startNode) {
         Queue<String> queue = new LinkedList<>();
         List<String> visited = new ArrayList<>();
 
@@ -29,8 +31,9 @@ public class BFS {
                 visited.add(currentNode);
                 System.out.println(currentNode);
 
-                List<String> neighbors = graph.get(currentNode);
-                for (String neighbor : neighbors) {
+                int nodeIndex = currentNode.charAt(0) - 'A';
+                for (int i = 1; i < graph[nodeIndex].length; i++) {
+                    String neighbor = graph[nodeIndex][i];
                     if (!visited.contains(neighbor) && !queue.contains(neighbor)) {
                         queue.offer(neighbor);
                     }
@@ -39,18 +42,21 @@ public class BFS {
         }
     }
 
-     public static void  bfsSort() {
-        Map<String, List<String>> graph = new HashMap<>();
-        graph.put("A", Arrays.asList("B", "C"));
-        graph.put("B", Arrays.asList("A", "D", "E"));
-        graph.put("C", Arrays.asList("A", "F"));
-        graph.put("D", Collections.singletonList("B"));
-        graph.put("E", Arrays.asList("B", "F"));
-        graph.put("F", Arrays.asList("C", "E"));
+    public static void bfsSort() {
+        String[][] graph = {
+            {"A", "B", "C"},
+            {"B", "A", "D", "E"},
+            {"C", "A", "F"},
+            {"D", "B"},
+            {"E", "B", "F"},
+            {"F", "C", "E"}
+        };
 
-        String startNode = "A";
+        String startNode = "C";
 
         System.out.println("BFS Traversal:");
         bfs(graph, startNode);
     }
+
+
 }
